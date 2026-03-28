@@ -1,0 +1,30 @@
+# Project notes and archived drafts
+v1.md
+.ignore/
+
+# Local editor settings
+.vscode/
+
+# Runtime project memory
+.agent-memory/PROJECT.md
+.agent-memory/RECOVER.md
+.agent-memory/STATE.json
+.agent-memory/CHECKPOINTS.jsonl
+
+# Python virtual environments
+.venv/
+venv/
+
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+
+# Test and packaging artifacts
+.pytest_cache/
+.coverage
+build/
+dist/
+*.egg-info/
+
+# macOS
+.DS_Store
