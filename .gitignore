@@ -7,10 +7,7 @@ versions/
 .vscode/
 
 # Runtime project memory
-.agent-memory/PROJECT.md
-.agent-memory/RECOVER.md
-.agent-memory/STATE.json
-.agent-memory/CHECKPOINTS.jsonl
+.agent-memory/
 
 # Python virtual environments
 .venv/
