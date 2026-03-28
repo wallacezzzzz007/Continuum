@@ -14,6 +14,12 @@ The goal is simple: let work continue across thread loss, context reset, subagen
 
 The AI should not depend on thread history as the source of truth. Instead, it should create and maintain durable state under `.agent-memory/`.
 
+## Templates
+
+The canonical templates live in the repository root under `references/`.
+
+The copies under `platforms/*/continuum-project-memory/references/` exist only to keep the skill self-contained.
+
 ## How It Works
 
 `init`
@@ -95,23 +101,6 @@ Then the AI should output:
 - chat history should not be the only memory layer
 - long-running work needs stable checkpoints
 - different AI tools should be able to share the same project state
-
-## Repository Structure
-
-- `platforms/codex/continuum-project-memory/SKILL.md`
-  Codex skill definition.
-- `platforms/codex/continuum-project-memory/agents/openai.yaml`
-  Codex UI metadata.
-- `references/project-template.md`
-  Project memory template.
-- `references/recover-template.md`
-  Recovery entrypoint template.
-- `references/state-template.json`
-  Machine-readable state template.
-- `references/checkpoints-template.jsonl`
-  Checkpoint log template.
-- `docs/spec.md`
-  Project-level specification and workflow notes.
 
 ## Status
 

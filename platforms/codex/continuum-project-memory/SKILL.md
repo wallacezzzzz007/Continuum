@@ -43,10 +43,10 @@ Task files and subagent files are optional. If they exist, update and read them.
 
 Use these bundled references as the preferred source when creating runtime files:
 
-- [references/project-template.md](../../../references/project-template.md)
-- [references/recover-template.md](../../../references/recover-template.md)
-- [references/state-template.json](../../../references/state-template.json)
-- [references/checkpoints-template.jsonl](../../../references/checkpoints-template.jsonl)
+- [references/project-template.md](./references/project-template.md)
+- [references/recover-template.md](./references/recover-template.md)
+- [references/state-template.json](./references/state-template.json)
+- [references/checkpoints-template.jsonl](./references/checkpoints-template.jsonl)
 
 If a reference file is unavailable, create the runtime files directly using the field requirements in this skill.
 
