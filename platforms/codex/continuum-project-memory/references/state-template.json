@@ -1,0 +1,25 @@
+{
+  "project_goal": "<project goal>",
+  "constraints": [
+    "<constraint>"
+  ],
+  "current_plan": [
+    "<step>",
+    "<step>",
+    "<step>"
+  ],
+  "last_stable_state": "<stable summary>",
+  "immediate_next_action": "<one concrete next action>",
+  "current_task_file": null,
+  "current_subagent_file": null,
+  "key_files": [
+    ".agent-memory/RECOVER.md",
+    ".agent-memory/PROJECT.md",
+    ".agent-memory/STATE.json"
+  ],
+  "last_stable_checkpoint": {
+    "id": "ckpt-0001",
+    "time": "<ISO-8601 timestamp>"
+  },
+  "last_updated": "<ISO-8601 timestamp>"
+}
