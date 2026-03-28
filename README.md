@@ -40,6 +40,7 @@ The copies under `platforms/*/continuum-project-memory/references/` exist only t
 - creates a scoped subagent file when work is split
 - establishes the canonical current subagent pointer
 - records the subagent's enduring role for future recovery
+- initializes a minimal status such as `active`, `paused`, `done`, or `restored`
 
 `checkpoint`
 
@@ -52,6 +53,7 @@ The copies under `platforms/*/continuum-project-memory/references/` exist only t
 - reads project memory in a fixed order
 - reconstructs the current state
 - gives the next action without relying on old thread history
+- restores selected subagents as real usable agents when requested
 
 ## What `init` Means
 
@@ -133,7 +135,9 @@ If subagents exist, the AI should first ask whether to restore:
 - specific subagents
 - all subagents
 
-Then it should directly restore the selected subagent files.
+Then it should directly restore every selected subagent for use.
+
+Restoring means turning the selected subagent back into a usable scoped worker, not just summarizing its old state.
 
 ## What `spawn_subagent` Means
 
@@ -145,8 +149,9 @@ The AI should:
 
 1. create `.agent-memory/subagents/{name}.md`
 2. record that subagent's role or responsibility explicitly
-3. include only the scoped context needed by that subagent
-4. update the current subagent pointers in `PROJECT.md`, `RECOVER.md`, and `STATE.json`
+3. initialize a minimal status for that subagent
+4. include only the scoped context needed by that subagent
+5. update the current subagent pointers in `PROJECT.md`, `RECOVER.md`, and `STATE.json`
 
 ## Why This Exists
 

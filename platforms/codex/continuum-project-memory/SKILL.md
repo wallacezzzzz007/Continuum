@@ -162,6 +162,7 @@ Use this when:
 1. Define:
    - subagent name
    - subagent role or responsibility
+   - subagent status
    - mission
    - scope
    - inputs
@@ -176,6 +177,7 @@ Use this when:
 6. Define one narrow next step.
 7. Do not dump full thread history.
 8. Record the subagent's enduring role explicitly so `continue` can restore it later without re-deriving its function.
+9. Initialize the subagent status to `active` unless there is a clear reason to start paused.
 
 ### Return
 
@@ -203,6 +205,7 @@ Use this when:
 7. If a task index exists and task state changed, update `.agent-memory/TASKS.md`.
 8. If a committed decision was made, update `.agent-memory/DECISIONS.md`.
 9. Keep current task and current subagent pointers accurate if they changed during the work.
+10. Update subagent status when a scoped worker becomes paused, done, or restored for further use.
 
 ### Every checkpoint must record
 
@@ -267,9 +270,19 @@ If subagent files are present, ask the user one concise restore-scope question:
 After the user chooses, immediately read the selected subagent files and restore them by reporting:
 
 - role or responsibility
+- status
 - mission
 - current state
 - pending next step
+
+For each selected subagent, restore it for use by:
+
+- preserving current project and task context while restoring subagents
+- spawning a real agent for each selected subagent
+- updating its status to `restored` or `active` as appropriate
+- updating the canonical current subagent pointers when the restored subagent becomes the active one
+- recording spawned agent identifiers when available
+- making the restored next step explicit so work can continue immediately
 
 ### Continue rule
 
@@ -277,6 +290,8 @@ Do not ask for the full old thread unless truly blocked.
 Trust project memory over conversational history unless the repository clearly contradicts it.
 Use the canonical task and subagent pointers to decide which scoped files are relevant.
 Do not restore all subagents by default when a narrower restore path is possible.
+Treat `done` subagents as historical by default unless the user explicitly chooses to restore them for further use.
+Do not drop other tasks or project-level context while restoring subagents.
 
 ## Summary
 

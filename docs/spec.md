@@ -88,6 +88,7 @@ Expected result:
 - the subagent has one narrow next step
 - current-subagent pointers are updated consistently
 - the subagent's enduring role is recorded for future recovery
+- the subagent has a minimal status field such as `active`, `paused`, `done`, or `restored`
 
 Create:
 
@@ -151,6 +152,7 @@ Expected result:
 - the AI reconstructs the current state from files
 - the AI outputs the exact next action
 - the AI does not require the old thread unless truly blocked
+- selected subagents can be restored as real runnable agents when the user requests it
 
 Return:
 
@@ -287,6 +289,7 @@ When present, each task file should describe a scoped work unit:
 When present, each subagent file should describe a recoverable scoped worker:
 
 - role or responsibility
+- status
 - mission
 - scope
 - inputs
@@ -317,7 +320,16 @@ If subagent files are present, `continue` should first ask the user whether to r
 - specific subagents
 - all subagents
 
-After the user chooses, `continue` should immediately read the selected subagent files and restore their role, mission, current state, and pending next step.
+After the user chooses, `continue` should immediately restore every selected subagent for use.
+
+Restoring for use means:
+
+- preserving current project and task context
+- spawning a real agent for each selected subagent
+- updating the selected subagent status to `restored` or `active`
+- updating canonical current-subagent pointers when needed
+- recording spawned agent identifiers when available
+- producing the restored subagent's next step so work can continue immediately
 
 ## Operating Rules
 

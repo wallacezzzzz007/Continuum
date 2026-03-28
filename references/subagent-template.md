@@ -8,6 +8,17 @@
 
 <The enduring responsibility this subagent owns>
 
+## Status
+
+active
+
+Allowed minimal values:
+
+- `active`
+- `paused`
+- `done`
+- `restored`
+
 ## Mission
 
 <What this subagent is responsible for>
