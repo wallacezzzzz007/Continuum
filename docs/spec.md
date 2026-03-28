@@ -87,6 +87,7 @@ Expected result:
 - the subagent has minimal relevant context
 - the subagent has one narrow next step
 - current-subagent pointers are updated consistently
+- the subagent's enduring role is recorded for future recovery
 
 Create:
 
@@ -285,6 +286,7 @@ When present, each task file should describe a scoped work unit:
 
 When present, each subagent file should describe a recoverable scoped worker:
 
+- role or responsibility
 - mission
 - scope
 - inputs
@@ -304,9 +306,18 @@ Read in this order:
 3. `.agent-memory/STATE.json`
 4. `.agent-memory/TASKS.md` if it exists
 5. the current task file from the canonical pointers, if it exists
-6. the current subagent file from the canonical pointers, if it exists
-7. `.agent-memory/DECISIONS.md` if it exists and current work depends on committed decisions
-8. listed key source or document files
+6. discover available subagent files in `.agent-memory/subagents/` if the directory exists
+7. the current subagent file from the canonical pointers, if it exists
+8. `.agent-memory/DECISIONS.md` if it exists and current work depends on committed decisions
+9. listed key source or document files
+
+If subagent files are present, `continue` should first ask the user whether to restore:
+
+- only the current subagent
+- specific subagents
+- all subagents
+
+After the user chooses, `continue` should immediately read the selected subagent files and restore their role, mission, current state, and pending next step.
 
 ## Operating Rules
 

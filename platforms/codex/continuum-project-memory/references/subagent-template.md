@@ -4,6 +4,10 @@
 
 <subagent name>
 
+## Role
+
+<The enduring responsibility this subagent owns>
+
 ## Mission
 
 <What this subagent is responsible for>

@@ -39,6 +39,7 @@ The copies under `platforms/*/continuum-project-memory/references/` exist only t
 
 - creates a scoped subagent file when work is split
 - establishes the canonical current subagent pointer
+- records the subagent's enduring role for future recovery
 
 `checkpoint`
 
@@ -113,9 +114,10 @@ The AI should read in this order:
 3. `STATE.json`
 4. `TASKS.md` if it exists
 5. the current task file if one exists
-6. the current subagent file if one exists
-7. `DECISIONS.md` if current work depends on committed decisions
-8. listed key source or document files
+6. available subagent files if they exist
+7. the current subagent file if one exists
+8. `DECISIONS.md` if current work depends on committed decisions
+9. listed key source or document files
 
 Then the AI should output:
 
@@ -124,6 +126,14 @@ Then the AI should output:
 - first code or document change to make
 - files to inspect first
 - missing information only if necessary
+
+If subagents exist, the AI should first ask whether to restore:
+
+- only the current subagent
+- specific subagents
+- all subagents
+
+Then it should directly restore the selected subagent files.
 
 ## What `spawn_subagent` Means
 
@@ -134,8 +144,9 @@ Use `spawn_subagent` when:
 The AI should:
 
 1. create `.agent-memory/subagents/{name}.md`
-2. include only the scoped context needed by that subagent
-3. update the current subagent pointers in `PROJECT.md`, `RECOVER.md`, and `STATE.json`
+2. record that subagent's role or responsibility explicitly
+3. include only the scoped context needed by that subagent
+4. update the current subagent pointers in `PROJECT.md`, `RECOVER.md`, and `STATE.json`
 
 ## Why This Exists
 

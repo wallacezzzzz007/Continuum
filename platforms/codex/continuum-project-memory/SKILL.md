@@ -161,6 +161,7 @@ Use this when:
 
 1. Define:
    - subagent name
+   - subagent role or responsibility
    - mission
    - scope
    - inputs
@@ -174,6 +175,7 @@ Use this when:
 5. Include the exact files this subagent should inspect first.
 6. Define one narrow next step.
 7. Do not dump full thread history.
+8. Record the subagent's enduring role explicitly so `continue` can restore it later without re-deriving its function.
 
 ### Return
 
@@ -240,9 +242,10 @@ Read in this order:
 3. `.agent-memory/STATE.json`
 4. `.agent-memory/TASKS.md` if it exists
 5. the current task file from the canonical pointers, if it exists
-6. the current subagent file from the canonical pointers, if it exists
-7. `.agent-memory/DECISIONS.md` if it exists and current work depends on committed decisions
-8. listed key source or document files
+6. discover available subagent files in `.agent-memory/subagents/` if the directory exists
+7. the current subagent file from the canonical pointers, if it exists
+8. `.agent-memory/DECISIONS.md` if it exists and current work depends on committed decisions
+9. listed key source or document files
 
 ### Then produce
 
@@ -253,11 +256,27 @@ Read in this order:
 - files to inspect first
 - any conflict between memory and current project state
 
+### Subagent restore rule
+
+If subagent files are present, ask the user one concise restore-scope question:
+
+- restore only the current subagent
+- restore specific subagents by name
+- restore all subagents
+
+After the user chooses, immediately read the selected subagent files and restore them by reporting:
+
+- role or responsibility
+- mission
+- current state
+- pending next step
+
 ### Continue rule
 
 Do not ask for the full old thread unless truly blocked.
 Trust project memory over conversational history unless the repository clearly contradicts it.
 Use the canonical task and subagent pointers to decide which scoped files are relevant.
+Do not restore all subagents by default when a narrower restore path is possible.
 
 ## Summary
 
