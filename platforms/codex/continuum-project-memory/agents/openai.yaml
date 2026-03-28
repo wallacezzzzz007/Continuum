@@ -1,7 +1,4 @@
 interface:
   display_name: "Continuum"
-  short_description: "Durable project state for resumable AI work"
-  default_prompt: "Use $continuum-project-memory to initialize, checkpoint, or continue project memory under .agent-memory/."
-
-policy:
-  allow_implicit_invocation: true
+  short_description: "Durable project memory and recovery flow"
+  default_prompt: "Use $continuum-project-memory to init, create tasks, spawn subagents, checkpoint progress, or continue durable project memory under .agent-memory."

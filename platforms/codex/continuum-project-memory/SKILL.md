@@ -1,6 +1,6 @@
 ---
 name: continuum-project-memory
-description: Help AI agents create, update, and resume durable project memory under .agent-memory/ so work survives thread loss, resets, and handoffs with Continuum.
+description: Create, update, and resume durable project memory under .agent-memory/ with support for init, create_task, spawn_subagent, checkpoint, and continue. Use when AI work needs recoverable project state across thread loss, context resets, subagent handoffs, or switching tools.
 ---
 
 # Continuum
