@@ -16,6 +16,17 @@ The goal is simple: let work continue across thread loss, context reset, subagen
 
 The AI should not depend on thread history as the source of truth. Instead, it should create and maintain durable state under `.agent-memory/`.
 
+## Install
+
+To install this skill for Codex, copy `platforms/codex/continuum-project-memory/` into your local skills directory:
+
+```bash
+mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
+cp -R platforms/codex/continuum-project-memory "${CODEX_HOME:-$HOME/.codex}/skills/continuum-project-memory"
+```
+
+After that, invoke it as `$Continuum`.
+
 ## Templates
 
 The canonical templates live in the repository root under `references/`.
